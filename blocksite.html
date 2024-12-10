@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Blocked</title>
+
+    <style>
+      /* Basic styling for the body of the page */
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: rgba(0, 0, 0, 0.7); /* Slightly transparent text color */
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.02); /* Light background */
+        display: flex; /* Flexbox layout */
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically */
+        height: 100vh; /* Full viewport height */
+        overflow: hidden; /* Prevent scrolling */
+      }
+
+      /* Styling for the top banner */
+      .banner {
+        position: fixed; /* Stays at the top even when scrolling */
+        top: 0;
+        left: 0;
+        width: 100%; /* Full width */
+        background-color: white;
+        border-bottom: 2px solid #0073b1; /* Bottom border with LinkedIn blue */
+        display: flex; /* Flexbox for aligning content */
+        align-items: center;
+        z-index: 1000; /* Ensures the banner is above other content */
+      }
+
+      /* Computer screen image (base64-encoded PNG image) */
+      .cscreen {
+        height: 35%; /* Or a height that fits the SVG */
+        overflow: visible;
+        position: absolute;
+        top: 40%; /* Position relative to the page */
+        left: 15%;
+        width: 25%; /* Relative width */
+        transform: translate(-50%, -50%); /* Centers the image */
+        z-index: 1; /* Ensures it's below the content */
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADhCAMAAABFoniZAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAIWUExURUdwTMne3vHx8fHx8ejq6vLy8t3o7PDw8PHx8fDw8O3t7e7u7u7u7vDw8PHx8fHx8d7j5/Dw8PHx8fDw8LW1zsDS4vHx8fHx8e/v7/Dw8PHx8cLV4+7u7sHS4r/Q4PDw8PDw8PHx8cHR4sDS4/Dw8MDR4vHx8b/T28HT2/Hx8VZoevDw8PDw8PHx8cHR5L/U1sHS4vHx8e7u7lhmfv///9ni6sDQ4a+7x1Vneb/T1vDw8PDw8PLy8vDw8PDw8FZne/Dw8FZoesDR4lZoesDR4cDR4u/v7/Dw8MHQ4r/Q4Vdoe8HR48HT17/S1rjCzMLT5L/S1e7u7r7S1u7u7sHQ4fDw8FZoe77T1Ku3w1ZoelVhecDT17S/ycDR48DS4sDR4u7u7sDL08HO4vHx8fDw8PDw8Pj39f/d3vX08b/T1v////Dw8MDR4lZoetzm8Zyqt9nl552zyP79/fPz8/b18v7+/vf39/z8+/Ly8tzm5v/m5/X19ff39L/Q4fb29vT09Pj4+Pr6+f39/vv7+/r6+vz8/Pz8+vrv7v/n6LC/z/Pz8dzn6bvBx/39/eTs9OHp8gBzt+Dp6/n49/f29PHx8T2UyPv7+u7v8CiJwufs8d/o8v/j5Orv8vD1+U6ezf/g4P7+/+fu9f7+/eDm68jW5Nbd47TW6t3n8enw987e4Pj6/Pny8dLd56HL5CqKw/f7/Ym+3rnZ68u6ASgAAABmdFJOUwADMTUNKAXNmvIaaGPk1ccTeOi4AvmV/FDQoBsLoGw5JMQr197Ic1ozZfRKfY1U6vPmmRsIHq4gjdlFwCeFsUXvrrr6JtM/mJh4tm9G34JLzlmOaWf50KHxyRWFyOmN7mxFPmrZqzoP/BQAAAc1SURBVHja7d35Q9NmHAbw0JWWMs6BXANRdCqew+HcvIab7r43d99HZ5usbkIqs5O2a+vYEWDCZDrxnu4+/sOlpYU0pM37pklK8j7Pj4Bp8/H7fvPmTZNyXNnsfTXEXHZtHuYM5OkQo3mQ3ur5ELvZQmm1KxSCFmHeDLEdGqsaxq2o+taLrGOFfORYzFuFNtNjfebGfFcuv+X3/Bl6rDBz+YG+xRNg/T2TTXiUp4rIJtZP/+awxumwMoxihS/fCgOLGGvmP2ARYv1zeeYWsMiw/voxm3B6lCqMHg0xdVBjHXdZZoN6+QJYhQSrhvWtbnJ/NmZdaLcfPJeL/ViXIgSR/87SDiNv38g5ge1Y02RYQauxwi7DissTLCn7JqO8iZEcjDU9Pz9/QRNrad/mzJxmSXwBK6GezEVXOdbt/H/3hZVY8fyvwpk5U4egyDu1spYGx4UVWHMFrLhkbsNyKpaildxWY/FLWCKwVFjzaqzC8mA4hWGYa+7Ko1SJBi+vN/AxUwtLdA7WtanlXFJiKX4+tTh1GC+szcTMnDpkCkfDuPwK5ROvNtZJxYunlDtRPGnEpFSNFVZYTQBLB2tUu7CApYW1XFopYOliFWorEwaWPlZYTE9MSCt3BlhaWCV2xgYsuZpT5ZLJSMAqYMltMl0uzsE6jmGoxoouJ63ambEvrctxR2KJiqiwrI6bGjywgGUMK629JAAsQ5V13cKDYTKHJa+SxUsklsgliXmWK2fwygt9wCLHKl7ATAMLlQWsSrFE7QBLA0tMaAdYq3gY8kUXTJYSUwRYzhqGUXUwKS1dWRl1gIXTHWCtUqyouUFlobJswppbMc8ajRVnovpY6TKfiFJiWXh/GCoLWMAi2Jk/TlsZl2F9/YmVARawWMdKKGY2KWChsoBlP9YYwZu6DiyqWI41JilzkiRJ+7HOn9LNmA1YlI8iqM6jCqRV0rNm6UfhWTR4HA1dg5Va/MBYqtpYyfx6cyKZTwqVVRJLlFQRgYWeBSxgaWOJy1cgxGpiFX9opnREVBaGoQuxMhoRgaWNpdUYosDCMASWnVil7uIGlgZWskSAhWEILPvuZNUOsCh6FrAwDIFlH9bSvdtSdbCCqCxirDFgkWMFgUWcWWCRJ1jAmiAMw1inl7BEwrCLdWUyiGFImkkHYSU0HnlrJ9bPK7Ck0s0qwXhlTU5iGFIUFrAoCgtYFFZOw9K6M3PUBqwrk6gsusICFnF3dx6WpBEbPusw6UgsrXvFJ2y77ddlwxBYwDKGVX4tpOj5WfoxtNfnz9ImWC2sRNln2dlQWSbH3cPQZVhxgrCBVXTRXkJlkfcsYKFn6eTTfNjD+r6w68BiACu2vFQWK75gCixUFutY+S8XTZbFmgUWxbejJE+ZF/Uq4zm3YZmY2aD1cQ1W0PVYVrYsyVlYYql1PAlHQ2NTBzEBLFKsjJEFY1axst+anBbNXn53IJZUtMfjmlhJVBZFz4qOZ4CFc0NrsK4CixTrYiQSWQAWEVYkl1/VhwM+BqwVWAuLWBGmKyuj/8UUOazpPJaEYahfWVN5rK+ApY/1O4YhRYOftqqwXDl1WLgYuXYVUwfM4IEFLCqsrfRY7OYBcqxXmMe6jxzrDdatKEYhx72OwuLQtUzvWLk8wrDVYY42TzJr9RBnIIdZrK6thqjsywmi7OUQYqxnAUWO9RagyLFeAxQ51glAAYsu7wOLPGu/IQukOK69TyALqOQcJcS6G1QcR2glPAEqcqx7QMUNk2LdCyvuCCkWOjzHvUOM5QMWsZWwBVjkWH3AIsdC09oMLPJsAJYlo1C4n3ErHw0W69PSl2mwBIxCijwHLPJsYNpqgA6L7XG4hhKrBaOQPGsYtlpLiyVgFFLkKWatvIKA0rLivJD5azwGrIS3GbV63AiWgMKiCJtXxNYawxLaUVhY1SqXPqNYDHYtn2ErBs95jhrHEgYYs2oRKgm6O0XYutz6cGVYTE0fBiq0YqrHCxWHnXn8u5VjCTvRsCiyB+eEFKlhwGqnYFbcb3XENCvhjNutPhDMjJMlPJ6Ghh0dHc3N/qamxsbGkUDgmOqpwDcEczOv2n4gEJBfuKmpqbm5uaOjoaHB46nqaoG3ft0Bz2Drbn8TT50/BcFiLYL4D+0e3OZZV1/vteSkd9+mjkPNGwN8pbkpmJ8bFb+rIX9b3fauA5WcQdX49tXxpmb+jCW5ae679G9v8dG4basL8Bbkl8+tiRXvle9urSWQ2t7JWxRHYWUz0quHFeCRQnr02/l78Mpm/6PEfau/rnGkk0mkY3dt3GTwlqo9/YM72ja6n2hofV3rC/3mfbCw3ecb7t226eB6d/AE1h/s8vQO+2xdvFhX29XV2trT09bm7/5oaGg1eXQODXV3t7V93LOj9cOu/lrvKj9b9Hq99XJq5dwhp+FOOY/VZbPfvxiqnc//m57cFl7Kbiy7VY+8dfnspV5+sV7rduV/AQoib5l7RDkAAAAASUVORK5CYII=");
+        background-size: cover;
+      }
+
+      /* Positioning and styling of the content block */
+      .content {
+        position: absolute;
+        top: 50%; /* Center vertically */
+        left: 55%; /* Position the content block */
+        transform: translate(-50%, -50%); /* Centers the content block */
+        z-index: 2; /* Ensures it's above the image */
+      }
+
+      /* Styling for the first paragraph in the content section (large text) */
+      .content p:first-of-type {
+        font-size: 90px; /* Very large text */
+        margin: 0;
+        font-weight: 300; /* Light font weight */
+      }
+
+      /* Styling for the second paragraph in the content section */
+      .content p:last-of-type {
+        font-size: 18px; /* Smaller text */
+        margin: 10px 0;
+        font-weight: 300; /* Light font weight */
+      }
+
+      /* Styling for the button */
+      .button {
+        display: inline-block;
+        padding: 9px 15px; /* Padding inside the button */
+        font-size: 22px;
+        color: white; /* Text color */
+        background-color: #0084bf; /* Initial background color */
+        border-radius: 3px; /* Rounded corners */
+        text-decoration: none; /* Remove underline from links */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s ease; /* Smooth transition effect */
+        margin-top: 15px; /* Space above the button */
+      }
+
+      /* Change button color on hover */
+      .button:hover {
+        background-color: #0073b1; /* Darker blue on hover */
+      }
+
+      /* Styling for general anchor links */
+      a {
+        color: blue; /* Blue link color */
+        text-decoration: underline; /* Underlined by default */
+      }
+
+      /* Larger text used within the content */
+      .larger-text {
+        font-size: 26px;
+      }
+
+      /* Indented styling */
+      .indent {
+        margin-left: 0px; /* No indentation applied here */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top banner -->
+    <div class="banner">
+      <img class="logo" />
+    </div>
+
+    <!-- Image of a computer screen -->
+    <img class="cscreen" />
+
+    <!-- Main content section with a title and description -->
+    <div class="content">
+      <p>Page Blocked :(</p>
+      <p>
+        <span class="larger-text"
+          >Access to this page has been restricted due to a security concern.
+          Example reasons include:</span
+        >
+        <br /><br />
+        <span>New or Untrusted Sites:</span> Pages from newly registered
+        websites or those associated with spam, fraud, or phishing attempts are
+        blocked
+        <br />
+        <span>Unsupported or Risky Tools:</span> VPNs, email (SMTP), DNS
+        services, and remote control apps (e.g., TeamViewer, LogMeIn) are
+        restricted except those authorized by LinkedIn
+        <br />
+        <span>Security Threats:</span> Websites linked to malicious software
+        (malware, spyware, adware) or network risks like proxies, anonymizers,
+        and peer-to-peer file sharing are blocked
+      </p>
+    </div>
+  </body>
+</html>
